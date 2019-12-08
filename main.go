@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"gprc/api"
+	"grpcvue/api"
 	"net"
 
 	"google.golang.org/grpc"
@@ -30,13 +30,18 @@ func main() {
 
 func (s *server) Add(ctx context.Context, req *api.Request) (*api.Response, error) {
 	fmt.Println("addition")
+	// c := req.GetC()
 	a, b := req.GetA(), req.GetB()
 	result := a + b
 	return &api.Response{Result: result}, nil
 }
 
-func (s *server) Multi(ctx context.Context, req *api.Request) (*api.Response, error) {
+func (s *server) Multi(req *api.Request, c api.AddService_MultiServer) error {
+	fmt.Println("multi")
 	a, b := req.GetA(), req.GetB()
 	result := a * b
-	return &api.Response{Result: result}, nil
+	if err := c.Send(&api.Response{Result: result}); err != nil {
+		return err
+	}
+	return nil
 }

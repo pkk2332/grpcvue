@@ -24,6 +24,53 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type More struct {
+	C                    int64    `protobuf:"varint,1,opt,name=c,proto3" json:"c,omitempty"`
+	D                    int64    `protobuf:"varint,2,opt,name=d,proto3" json:"d,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *More) Reset()         { *m = More{} }
+func (m *More) String() string { return proto.CompactTextString(m) }
+func (*More) ProtoMessage()    {}
+func (*More) Descriptor() ([]byte, []int) {
+	return fileDescriptor_691029fcf881525d, []int{0}
+}
+
+func (m *More) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_More.Unmarshal(m, b)
+}
+func (m *More) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_More.Marshal(b, m, deterministic)
+}
+func (m *More) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_More.Merge(m, src)
+}
+func (m *More) XXX_Size() int {
+	return xxx_messageInfo_More.Size(m)
+}
+func (m *More) XXX_DiscardUnknown() {
+	xxx_messageInfo_More.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_More proto.InternalMessageInfo
+
+func (m *More) GetC() int64 {
+	if m != nil {
+		return m.C
+	}
+	return 0
+}
+
+func (m *More) GetD() int64 {
+	if m != nil {
+		return m.D
+	}
+	return 0
+}
+
 type Request struct {
 	A                    int64    `protobuf:"varint,1,opt,name=a,proto3" json:"a,omitempty"`
 	B                    int64    `protobuf:"varint,2,opt,name=b,proto3" json:"b,omitempty"`
@@ -36,7 +83,7 @@ func (m *Request) Reset()         { *m = Request{} }
 func (m *Request) String() string { return proto.CompactTextString(m) }
 func (*Request) ProtoMessage()    {}
 func (*Request) Descriptor() ([]byte, []int) {
-	return fileDescriptor_691029fcf881525d, []int{0}
+	return fileDescriptor_691029fcf881525d, []int{1}
 }
 
 func (m *Request) XXX_Unmarshal(b []byte) error {
@@ -82,7 +129,7 @@ func (m *Response) Reset()         { *m = Response{} }
 func (m *Response) String() string { return proto.CompactTextString(m) }
 func (*Response) ProtoMessage()    {}
 func (*Response) Descriptor() ([]byte, []int) {
-	return fileDescriptor_691029fcf881525d, []int{1}
+	return fileDescriptor_691029fcf881525d, []int{2}
 }
 
 func (m *Response) XXX_Unmarshal(b []byte) error {
@@ -111,6 +158,7 @@ func (m *Response) GetResult() int64 {
 }
 
 func init() {
+	proto.RegisterType((*More)(nil), "api.More")
 	proto.RegisterType((*Request)(nil), "api.Request")
 	proto.RegisterType((*Response)(nil), "api.Response")
 }
@@ -118,17 +166,18 @@ func init() {
 func init() { proto.RegisterFile("api/person.proto", fileDescriptor_691029fcf881525d) }
 
 var fileDescriptor_691029fcf881525d = []byte{
-	// 157 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x48, 0x2c, 0xc8, 0xd4,
-	0x2f, 0x48, 0x2d, 0x2a, 0xce, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4e, 0x2c,
-	0xc8, 0x54, 0x52, 0xe5, 0x62, 0x0f, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0xe2, 0xe1, 0x62,
-	0x4c, 0x94, 0x60, 0x54, 0x60, 0xd4, 0x60, 0x0e, 0x62, 0x4c, 0x04, 0xf1, 0x92, 0x24, 0x98, 0x20,
-	0xbc, 0x24, 0x25, 0x25, 0x2e, 0x8e, 0xa0, 0xd4, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x31,
-	0x2e, 0xb6, 0xa2, 0xd4, 0xe2, 0xd2, 0x9c, 0x12, 0xa8, 0x62, 0x28, 0xcf, 0x28, 0x8c, 0x8b, 0xcb,
-	0x31, 0x25, 0x25, 0x38, 0xb5, 0xa8, 0x2c, 0x33, 0x39, 0x55, 0x48, 0x89, 0x8b, 0xd9, 0x31, 0x25,
-	0x45, 0x88, 0x47, 0x2f, 0xb1, 0x20, 0x53, 0x0f, 0x6a, 0x85, 0x14, 0x2f, 0x94, 0x07, 0x35, 0x49,
-	0x85, 0x8b, 0xd5, 0xb7, 0x34, 0xa7, 0x24, 0x13, 0xaf, 0xaa, 0x24, 0x36, 0xb0, 0x73, 0x8d, 0x01,
-	0x01, 0x00, 0x00, 0xff, 0xff, 0xdd, 0xe4, 0x5a, 0xe9, 0xc2, 0x00, 0x00, 0x00,
+	// 176 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0xcf, 0xb1, 0xca, 0xc2, 0x30,
+	0x10, 0xc0, 0x71, 0xf2, 0xf5, 0xb3, 0xca, 0x51, 0x41, 0x32, 0x48, 0x71, 0x92, 0x80, 0xe2, 0x54,
+	0x45, 0x9f, 0xa0, 0x0f, 0xd0, 0xa5, 0x2e, 0xae, 0x69, 0xef, 0x86, 0x40, 0x69, 0xce, 0x24, 0xf5,
+	0xf9, 0x25, 0x9a, 0xae, 0x8e, 0x3f, 0xee, 0xcf, 0x1d, 0x07, 0x1b, 0xcd, 0xe6, 0xcc, 0xe4, 0xbc,
+	0x1d, 0x2b, 0x76, 0x36, 0x58, 0x99, 0x69, 0x36, 0x4a, 0xc1, 0x7f, 0x63, 0x1d, 0xc9, 0x02, 0x44,
+	0x5f, 0x8a, 0xbd, 0x38, 0x65, 0xad, 0xe8, 0xa3, 0xb0, 0xfc, 0xfb, 0x0a, 0xd5, 0x01, 0x96, 0x2d,
+	0x3d, 0x27, 0xf2, 0x21, 0x0e, 0xf4, 0x9c, 0xe9, 0xa8, 0x6e, 0xce, 0x3a, 0xa5, 0x60, 0xd5, 0x92,
+	0x67, 0x3b, 0x7a, 0x92, 0x5b, 0xc8, 0x1d, 0xf9, 0x69, 0x08, 0x29, 0x4e, 0xba, 0x3e, 0x00, 0x6a,
+	0xc4, 0x3b, 0xb9, 0x97, 0xe9, 0x49, 0x2a, 0xc8, 0x6a, 0x44, 0x59, 0x54, 0x9a, 0x4d, 0x95, 0x4e,
+	0xec, 0xd6, 0x49, 0x69, 0xd3, 0x11, 0x16, 0xcd, 0x34, 0x04, 0xf3, 0xb3, 0xba, 0x88, 0x2e, 0xff,
+	0x3c, 0x75, 0x7b, 0x07, 0x00, 0x00, 0xff, 0xff, 0x7a, 0x23, 0x6d, 0x5c, 0xe8, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -144,7 +193,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AddServiceClient interface {
 	Add(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
-	Multi(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	Multi(ctx context.Context, in *Request, opts ...grpc.CallOption) (AddService_MultiClient, error)
 }
 
 type addServiceClient struct {
@@ -164,19 +213,42 @@ func (c *addServiceClient) Add(ctx context.Context, in *Request, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *addServiceClient) Multi(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
-	err := c.cc.Invoke(ctx, "/api.AddService/Multi", in, out, opts...)
+func (c *addServiceClient) Multi(ctx context.Context, in *Request, opts ...grpc.CallOption) (AddService_MultiClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AddService_serviceDesc.Streams[0], "/api.AddService/Multi", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &addServiceMultiClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type AddService_MultiClient interface {
+	Recv() (*Response, error)
+	grpc.ClientStream
+}
+
+type addServiceMultiClient struct {
+	grpc.ClientStream
+}
+
+func (x *addServiceMultiClient) Recv() (*Response, error) {
+	m := new(Response)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // AddServiceServer is the server API for AddService service.
 type AddServiceServer interface {
 	Add(context.Context, *Request) (*Response, error)
-	Multi(context.Context, *Request) (*Response, error)
+	Multi(*Request, AddService_MultiServer) error
 }
 
 // UnimplementedAddServiceServer can be embedded to have forward compatible implementations.
@@ -186,8 +258,8 @@ type UnimplementedAddServiceServer struct {
 func (*UnimplementedAddServiceServer) Add(ctx context.Context, req *Request) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (*UnimplementedAddServiceServer) Multi(ctx context.Context, req *Request) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Multi not implemented")
+func (*UnimplementedAddServiceServer) Multi(req *Request, srv AddService_MultiServer) error {
+	return status.Errorf(codes.Unimplemented, "method Multi not implemented")
 }
 
 func RegisterAddServiceServer(s *grpc.Server, srv AddServiceServer) {
@@ -212,22 +284,25 @@ func _AddService_Add_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AddService_Multi_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
-	if err := dec(in); err != nil {
-		return nil, err
+func _AddService_Multi_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Request)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(AddServiceServer).Multi(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.AddService/Multi",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AddServiceServer).Multi(ctx, req.(*Request))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(AddServiceServer).Multi(m, &addServiceMultiServer{stream})
+}
+
+type AddService_MultiServer interface {
+	Send(*Response) error
+	grpc.ServerStream
+}
+
+type addServiceMultiServer struct {
+	grpc.ServerStream
+}
+
+func (x *addServiceMultiServer) Send(m *Response) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 var _AddService_serviceDesc = grpc.ServiceDesc{
@@ -238,11 +313,13 @@ var _AddService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "Add",
 			Handler:    _AddService_Add_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "Multi",
-			Handler:    _AddService_Multi_Handler,
+			StreamName:    "Multi",
+			Handler:       _AddService_Multi_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "api/person.proto",
 }

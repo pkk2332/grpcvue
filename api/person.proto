@@ -3,7 +3,10 @@ syntax="proto3";
 package api;
 
 
-
+message More{
+    int64 c= 1;
+    int64 d=2;
+}
 message Request{
     int64 a = 1;
     int64 b = 2; 
@@ -15,5 +18,5 @@ message Response {
 
 service AddService{
     rpc Add (Request) returns (Response);
-    rpc Multi (Request) returns (Response);
+    rpc Multi (Request) returns (stream Response);
 }
