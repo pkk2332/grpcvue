@@ -296,5 +296,85 @@ proto.api.AddServicePromiseClient.prototype.test =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.Request,
+ *   !proto.api.InfoResponse>}
+ */
+const methodDescriptor_AddService_testdata = new grpc.web.MethodDescriptor(
+  '/api.AddService/testdata',
+  grpc.web.MethodType.UNARY,
+  proto.api.Request,
+  proto.api.InfoResponse,
+  /**
+   * @param {!proto.api.Request} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.InfoResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.api.Request,
+ *   !proto.api.InfoResponse>}
+ */
+const methodInfo_AddService_testdata = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.api.InfoResponse,
+  /**
+   * @param {!proto.api.Request} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.InfoResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.Request} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.api.InfoResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.InfoResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AddServiceClient.prototype.testdata =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.AddService/testdata',
+      request,
+      metadata || {},
+      methodDescriptor_AddService_testdata,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.Request} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.InfoResponse>}
+ *     A native promise that resolves to the response
+ */
+proto.api.AddServicePromiseClient.prototype.testdata =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.AddService/testdata',
+      request,
+      metadata || {},
+      methodDescriptor_AddService_testdata);
+};
+
+
 module.exports = proto.api;
 

@@ -20,8 +20,12 @@ message Info{
     string title = 1 ;
     string msg = 2;
 }
+message InfoResponse{
+    repeated Info Infos=1;
+}
 service AddService{
     rpc Add (Request) returns (Response);
     rpc Multi (Request) returns (stream Response);
     rpc test (Request) returns (stream Info);
+    rpc testdata(Request) returns (InfoResponse);
 }

@@ -13,7 +13,7 @@ import (
 
 type server struct{}
 
-var info []api.Info
+var info []*api.Info
 
 func randomString(len int) string {
 	bytes := make([]byte, len)
@@ -27,13 +27,13 @@ func randomInt(min, max int) int {
 }
 func main() {
 
-	for index := 0; index < 50; index++ {
+	for index := 0; index < 25000; index++ {
 		new := api.Info{
 			Title: randomString(10),
 			Msg:   randomString(10),
 		}
 		fmt.Println(&new)
-		info = append(info, new)
+		info = append(info, &new)
 	}
 
 	listen, err := net.Listen("tcp", ":4040")
@@ -58,6 +58,10 @@ func (s *server) Add(ctx context.Context, req *api.Request) (*api.Response, erro
 	return &api.Response{Result: result}, nil
 }
 
+func (s *server) Testdata(ctx context.Context, req *api.Request) (*api.InfoResponse, error) {
+	return &api.InfoResponse{Infos: info}, nil
+}
+
 func (s *server) Multi(req *api.Request, c api.AddService_MultiServer) error {
 	fmt.Println("multi")
 	a, b := req.GetA(), req.GetB()
@@ -69,12 +73,11 @@ func (s *server) Multi(req *api.Request, c api.AddService_MultiServer) error {
 }
 func (s *server) Test(req *api.Request, c api.AddService_TestServer) error {
 	fmt.Println("Test")
-	// a, b := req.GetA(), req.GetB()
-	// result := a * b
 	for _, aa := range info {
-		if err := c.Send(&aa); err != nil {
+		if err := c.Send(aa); err != nil {
 			return err
 		}
 	}
+	fmt.Println("ended sending")
 	return nil
 }

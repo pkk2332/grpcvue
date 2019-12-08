@@ -8,7 +8,9 @@
     </span>
     <button @click="add()">Add</button>
         <button @click="multi()">Multi</button>
-                <button @click="test()">Multi</button>
+                <button @click="test()">Test</button>
+                                <button @click="testdata()">TestData</button>
+
 
   <div class="card">
     <div :key="index" v-for="(i,index) in infos" class="card-body">
@@ -38,7 +40,23 @@ methods: {
       req.setB(this.b);
      var stream= this.client.test(req,{});
      stream.on('data',(res)=>{
+      //  console.log(res)
        this.infos.push(res.toObject())
+     })
+  },
+  testdata(){
+     var req= new Request();
+      // console.log(req)      // console.log(more);
+      req.setA(this.a);
+      req.setB(this.b);
+    this.client.testdata(req,{},(err,res)=>{
+       if(err){
+         console.log(err)
+       }else{
+        //  console.log(res.getInfosList())
+        this.infos=res.toObject().infosList
+        console.log(this.infos)
+       }
      })
   },
   add(){
