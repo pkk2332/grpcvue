@@ -8,7 +8,13 @@
     </span>
     <button @click="add()">Add</button>
         <button @click="multi()">Multi</button>
+                <button @click="test()">Multi</button>
 
+  <div class="card">
+    <div :key="index" v-for="(i,index) in infos" class="card-body">
+          <div class="">{{i.title}}/{{i.msg}}</div>
+    </div>
+  </div>
   </div>
 </template>
 <script>
@@ -20,10 +26,21 @@ data() {
     a:null,
     b:null,
     result:null,
-    client:null
+    client:null,
+    infos:[],
   }
 },
 methods: {
+  test(){
+     var req= new Request();
+      // console.log(req)      // console.log(more);
+      req.setA(this.a);
+      req.setB(this.b);
+     var stream= this.client.test(req,{});
+     stream.on('data',(res)=>{
+       this.infos.push(res.toObject())
+     })
+  },
   add(){
     var req= new Request();
       // console.log(req)      // console.log(more);

@@ -221,5 +221,80 @@ proto.api.AddServicePromiseClient.prototype.multi =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.Request,
+ *   !proto.api.Info>}
+ */
+const methodDescriptor_AddService_test = new grpc.web.MethodDescriptor(
+  '/api.AddService/test',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.api.Request,
+  proto.api.Info,
+  /**
+   * @param {!proto.api.Request} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.Info.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.api.Request,
+ *   !proto.api.Info>}
+ */
+const methodInfo_AddService_test = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.api.Info,
+  /**
+   * @param {!proto.api.Request} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.Info.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.Request} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.api.Info>}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AddServiceClient.prototype.test =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/api.AddService/test',
+      request,
+      metadata || {},
+      methodDescriptor_AddService_test);
+};
+
+
+/**
+ * @param {!proto.api.Request} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.api.Info>}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AddServicePromiseClient.prototype.test =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/api.AddService/test',
+      request,
+      metadata || {},
+      methodDescriptor_AddService_test);
+};
+
+
 module.exports = proto.api;
 

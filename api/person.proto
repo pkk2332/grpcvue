@@ -16,7 +16,12 @@ message Response {
     int64 result = 1;
 }
 
+message Info{
+    string title = 1 ;
+    string msg = 2;
+}
 service AddService{
     rpc Add (Request) returns (Response);
     rpc Multi (Request) returns (stream Response);
+    rpc test (Request) returns (stream Info);
 }
