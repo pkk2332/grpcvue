@@ -38,7 +38,6 @@ func main() {
 
 	listen, err := net.Listen("tcp", ":4040")
 	fmt.Println("server starting at ", &listen)
-	fmt.Println("server starting at ", &listen)
 
 	if err != nil {
 		panic(err)
